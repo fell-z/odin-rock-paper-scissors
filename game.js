@@ -10,7 +10,9 @@ END
 FUNC_END
 xxxxxxxxxxxxxxxxxxxxxxxxxxxxx Already Done
 
-FUNCTION humanPlay
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxx Already Done
+FUNCTION playerSelection
 START
 
     Request the human his choice, whether be "Rock" or "Paper" or "Scissors".
@@ -18,6 +20,7 @@ START
 
 END
 FUNC_END
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxx Already Done
 
 
 FUNCTION compareChoices
@@ -64,6 +67,17 @@ FUNC_END
 */
 
 function computerPlay() {
-  const CHOICES = ["Rock", "Paper", "Scissors"];
+  const CHOICES = ["rock", "paper", "scissors"];
   return CHOICES[Math.floor(Math.random() * 3)]; // obs: random number between 0 and 2
+}
+
+function playerSelection() {
+  let playerChoice;
+  while (true) {
+    playerChoice = prompt("Rock, Paper or Scissors?").toLowerCase();
+    if (playerChoice === "rock" || playerChoice === "paper" || playerChoice === "scissors") {
+      break;
+    }
+  }
+  return playerChoice;
 }
