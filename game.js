@@ -1,4 +1,5 @@
 /* 
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxx Already Done
 FUNCTION computerPlay
 START
 
@@ -7,7 +8,7 @@ START
 
 END
 FUNC_END
-
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxx Already Done
 
 FUNCTION humanPlay
 START
@@ -61,3 +62,8 @@ START
 END
 FUNC_END
 */
+
+function computerPlay() {
+  const CHOICES = ["Rock", "Paper", "Scissors"];
+  return CHOICES[Math.floor(Math.random() * 3)]; // obs: random number between 0 and 2
+}
