@@ -1,79 +1,12 @@
-/* 
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxx Already Done
-FUNCTION computerPlay
-START
-
-    Pick randomly "Rock" or "Paper" or "Scissors".
-    Return the picked Choice.
-
-END
-FUNC_END
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxx Already Done
-
-
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxx Already Done
-FUNCTION playerSelection
-START
-
-    Request the human his choice, whether be "Rock" or "Paper" or "Scissors".
-    Return the picked Choice.
-
-END
-FUNC_END
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxx Already Done
-
-
-FUNCTION compareChoices
-START
-
-  Call the function "computerPlay" and store the returned choice into a var named "computerChoice".
-  Call the function "humanPlay" and store the returned choice into a var named "humanChoice"
-
-  IF computerChoice === "Rock" THEN
-    IF humanChoice === "Paper" THEN
-      DISPLAY "Human Wins!".
-
-    ELSE IF humanChoice === "Scissors" THEN
-      DISPLAY "Computer Wins!".
-
-    ELSE THEN
-      DISPLAY "Draw!".
-  END
-
-  ELSE IF computerChoice === "Paper" THEN
-    IF humanChoice === "Scissors" THEN
-      DISPLAY "Human Wins!".
-
-    ELSE IF humanChoice === "Rock" THEN
-      DISPLAY "Computer Wins!".
-
-    ELSE THEN
-      DISPLAY "Draw!".
-  END
-  
-  ELSE IF computerChoice === "Scissors" THEN
-    IF humanChoice === "Rock" THEN
-      DISPLAY "Human Wins!".
-
-    ELSE IF humanChoice === "Paper" THEN
-      DISPLAY "Computer Wins!".
-
-    ELSE THEN
-      DISPLAY "Draw!".
-  END
-
-END
-FUNC_END
-*/
-
-function computerPlay() {
-  const CHOICES = ["rock", "paper", "scissors"];
-  return CHOICES[Math.floor(Math.random() * 3)]; // obs: random number between 0 and 2
+function computerSelection() {
+  const computerChoices = ["rock", "paper", "scissors"];
+  return computerChoices[Math.floor(Math.random() * 3)]; // obs: random number between 0 and 2
 }
 
 function playerSelection() {
   let playerChoice;
   while (true) {
+    //* This make a comparison as a safety measure to make sure "choice" is always a valid value.
     playerChoice = prompt("Rock, Paper or Scissors?").toLowerCase();
     if (playerChoice === "rock" || playerChoice === "paper" || playerChoice === "scissors") {
       break;
@@ -81,3 +14,61 @@ function playerSelection() {
   }
   return playerChoice;
 }
+
+function game() {
+  let playerScore = 0,
+    computerScore = 0;
+
+  function playRound(playerChoice, computerChoice) {
+    //! Case compChoice == "ROCK"
+    if (computerChoice === "rock") {
+      if (playerChoice === "paper") {
+        playerScore++;
+        console.log("Player wins! Paper beats Rock.");
+      } else if (playerChoice === "scissors") {
+        computerScore++;
+        console.log("Computer wins! Rock beats Scissors.");
+      } else {
+        console.log("Draw!");
+      }
+      //! Case compChoice == "PAPER"
+    } else if (computerChoice === "paper") {
+      if (playerChoice === "scissors") {
+        playerScore++;
+        console.log("Player wins! Scissors beats Paper.");
+      } else if (playerChoice === "rock") {
+        computerScore++;
+        console.log("Computer wins! Paper beats Rock.");
+      } else {
+        console.log("Draw!");
+      }
+      //! Case compChoice == "SCISSORS"
+    } else if (computerChoice === "scissors") {
+      if (playerChoice === "rock") {
+        playerScore++;
+        console.log("Player wins! Rock beats Scissors.");
+      } else if (playerChoice === "paper") {
+        computerScore++;
+        console.log("Computer wins! Scissors beats Paper.");
+      } else {
+        console.log("Draw!");
+      }
+    }
+  }
+
+  for (let i = 0; i < 5; i++) {
+    const computerChoice = computerSelection();
+    const playerChoice = playerSelection();
+
+    playRound(playerChoice, computerChoice);
+  }
+
+  console.log(`Player: ${playerScore}\nComputer: ${computerScore}\n`);
+  if (playerScore > computerScore) {
+    console.log("The player is the winner!");
+  } else {
+    console.log("The computer is the winner!");
+  }
+}
+
+game();
