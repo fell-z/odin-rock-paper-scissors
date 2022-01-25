@@ -66,8 +66,10 @@ function game() {
   console.log(`Player: ${playerScore}\nComputer: ${computerScore}\n`);
   if (playerScore > computerScore) {
     console.log("The player is the winner!");
-  } else {
+  } else if (playerScore < computerScore) {
     console.log("The computer is the winner!");
+  } else {
+    console.log("Draw! Nobody wins!");
   }
 }
 
