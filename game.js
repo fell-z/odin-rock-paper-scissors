@@ -1,11 +1,14 @@
 const resultsContainer = document.querySelector(".results div");
 const newGameButton = document.querySelector("#new-game");
+const scoreboard = document.querySelector(".scoreboard");
 
 const playerButtons = document.querySelectorAll(".player-buttons button");
 
 let playerScore = 0,
   computerScore = 0,
   roundCounter = 0;
+
+scoreboard.textContent = `Player: ${playerScore} || Computer: ${computerScore}`;
 
 playerButtons.forEach((button) =>
   button.addEventListener("click", (event) => {
@@ -20,6 +23,8 @@ newGameButton.addEventListener("click", () => {
   computerScore = 0;
   roundCounter = 0;
   resultsContainer.innerHTML = "";
+  scoreboard.textContent = `Player: ${playerScore} || Computer: ${computerScore}`;
+  document.body.querySelector("h3").remove();
 });
 
 /*
@@ -35,23 +40,23 @@ function game(event) {
   const result = document.createElement("p");
   result.textContent = playRound(event.target.dataset.choice, computerSelection());
 
+  scoreboard.textContent = `Player: ${playerScore} || Computer: ${computerScore}`;
+
   roundCounter++;
   result.textContent = `${roundCounter}. ${result.textContent}`;
 
   resultsContainer.appendChild(result);
 
-  //* in the lines containing "forEach" in playerButtons, it just removes the event listener
-  //* to prevent the player from playing a game who's already over.
   if (playerScore === 5) {
     const winnerDeclaration = document.createElement("h3");
     winnerDeclaration.textContent = "The player is the winner!";
 
-    resultsContainer.insertBefore(winnerDeclaration, resultsContainer.firstChild);
+    document.body.insertBefore(winnerDeclaration, newGameButton);
   } else if (computerScore === 5) {
     const winnerDeclaration = document.createElement("h3");
     winnerDeclaration.textContent = "The computer is the winner!";
 
-    resultsContainer.insertBefore(winnerDeclaration, resultsContainer.firstChild);
+    document.body.insertBefore(winnerDeclaration, newGameButton);
   }
 }
 

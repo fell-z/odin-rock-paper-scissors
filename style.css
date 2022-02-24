@@ -6,6 +6,7 @@
 :root {
   --accent-color: rgb(123, 255, 123);
   --dark-color: rgb(44, 44, 44);
+  --border-preset: 2px solid var(--accent-color);
 }
 
 * {
@@ -20,7 +21,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 48px;
+  gap: 36px;
   margin: 0 10%;
 }
 
@@ -32,11 +33,25 @@ h1 {
   text-align: center;
 }
 
+body > p {
+  width: 800px;
+}
+
+.scoreboard {
+  border: var(--border-preset);
+  border-radius: 10px;
+  color: var(--accent-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 64px;
+}
+
 button {
   width: 155px;
   background-color: var(--dark-color);
   color: var(--accent-color);
-  border: 2px solid var(--accent-color);
+  border: var(--border-preset);
   border-radius: 10px;
   padding: 10px;
   cursor: pointer;
@@ -71,7 +86,7 @@ p {
 .results {
   flex: 1;
   align-self: stretch;
-  border: 2px solid var(--accent-color);
+  border: var(--border-preset);
   border-radius: 10px;
   padding: 16px;
   margin-bottom: 24px;
