@@ -105,3 +105,42 @@ h3 {
 .results div p {
   text-align: initial;
 }
+
+@keyframes rainbow-border {
+  from {
+    border: 2px solid rgb(255, 101, 101);
+  }
+  12.5% {
+    border: 2px solid rgb(255, 180, 101);
+  }
+  25% {
+    border: 2px solid rgb(255, 248, 101);
+  }
+  37.5% {
+    border: 2px solid rgb(154, 255, 101);
+  }
+  50% {
+    border: 2px solid rgb(101, 255, 234);
+  }
+  62.5% {
+    border: 2px solid rgb(101, 200, 255);
+  }
+  75% {
+    border: 2px solid rgb(102, 101, 255);
+  }
+  87.5% {
+    border: 2px solid rgb(190, 101, 255);
+  }
+  to {
+    border: 2px solid rgb(250, 101, 255);
+  }
+}
+
+h3 {
+  border-radius: 10px;
+  padding: 16px;
+  animation-name: rainbow-border;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate-reverse;
+}
