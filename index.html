@@ -5,25 +5,38 @@
     <meta charset="UTF-8" />
     <title>Rock, Paper and Scissors</title>
     <link rel="stylesheet" href="style.css" />
-    <!-- <script src="game.js" defer></script> -->
+    <script src="game.js" defer></script>
   </head>
 
   <body>
     <h1>Rock, Paper and Scissors</h1>
 
     <div class="player-buttons">
-      <button id="rock">
-        <img src="img/rock.svg" alt="a closed hand meaning the rock" width="96" height="auto" />
+      <button data-choice="rock">
+        <img
+          data-choice="rock"
+          src="img/rock.svg"
+          alt="a closed hand meaning the rock"
+          width="96"
+          height="auto"
+        />
         Rock
       </button>
 
-      <button id="paper">
-        <img src="img/paper.svg" alt="a open hand meaning the paper" width="96" height="auto" />
+      <button data-choice="paper">
+        <img
+          data-choice="paper"
+          src="img/paper.svg"
+          alt="a open hand meaning the paper"
+          width="96"
+          height="auto"
+        />
         Paper
       </button>
 
-      <button id="scissors">
+      <button data-choice="scissors">
         <img
+          data-choice="scissors"
           src="img/scissor.svg"
           alt="a hand doing the peace sign meaning the scissors"
           width="96"
@@ -41,7 +54,7 @@
     </p>
 
     <div class="results">
-      <h3>Results</h3>
+      <h2>Results</h2>
       <div></div>
     </div>
   </body>

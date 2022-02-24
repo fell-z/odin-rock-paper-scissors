@@ -1,76 +1,102 @@
-function computerSelection() {
-  const computerChoices = ["rock", "paper", "scissors"];
-  return computerChoices[Math.floor(Math.random() * 3)]; // obs: random number between 0 and 2
-}
+const resultsContainer = document.querySelector(".results div");
+const newGameButton = document.querySelector("#new-game");
 
-function playerSelection() {
-  let playerChoice;
-  while (true) {
-    //* This make a comparison as a safety measure to make sure "choice" is always a valid value.
-    playerChoice = prompt("Rock, Paper or Scissors?").toLowerCase();
-    if (playerChoice === "rock" || playerChoice === "paper" || playerChoice === "scissors") {
-      break;
+const playerButtons = document.querySelectorAll(".player-buttons button");
+
+let playerScore = 0,
+  computerScore = 0,
+  roundCounter = 0;
+
+playerButtons.forEach((button) =>
+  button.addEventListener("click", (event) => {
+    if (computerScore < 5 && playerScore < 5) {
+      game(event);
     }
+  })
+);
+
+newGameButton.addEventListener("click", () => {
+  playerScore = 0;
+  computerScore = 0;
+  roundCounter = 0;
+  resultsContainer.innerHTML = "";
+});
+
+/*
+* this is the function called by the player buttons,
+* the "playerRound" function returns the text containing
+* the winner from the round previously played.
+
+* it makes the ground by creating an paragraph element with the declared winner of the round and,
+* if one of the scores counter reach "5", create a "h4" element with the winner of the game.
+
+*/
+function game(event) {
+  const result = document.createElement("p");
+  result.textContent = playRound(event.target.dataset.choice, computerSelection());
+
+  roundCounter++;
+  result.textContent = `${roundCounter}. ${result.textContent}`;
+
+  resultsContainer.appendChild(result);
+
+  //* in the lines containing "forEach" in playerButtons, it just removes the event listener
+  //* to prevent the player from playing a game who's already over.
+  if (playerScore === 5) {
+    const winnerDeclaration = document.createElement("h3");
+    winnerDeclaration.textContent = "The player is the winner!";
+
+    resultsContainer.insertBefore(winnerDeclaration, resultsContainer.firstChild);
+  } else if (computerScore === 5) {
+    const winnerDeclaration = document.createElement("h3");
+    winnerDeclaration.textContent = "The computer is the winner!";
+
+    resultsContainer.insertBefore(winnerDeclaration, resultsContainer.firstChild);
   }
-  return playerChoice;
 }
 
-function game() {
-  let playerScore = 0,
-    computerScore = 0;
+function computerSelection() {
+  const COMPUTER_CHOICES = ["rock", "paper", "scissors"];
+  return COMPUTER_CHOICES[Math.floor(Math.random() * 3)]; // obs: random number between 0 and 2
+}
 
-  function playRound(playerChoice, computerChoice) {
-    //! Case compChoice == "ROCK"
-    if (computerChoice === "rock") {
+//* this code plays one single round of the game
+function playRound(playerChoice, computerChoice) {
+  switch (computerChoice) {
+    case "rock":
       if (playerChoice === "paper") {
         playerScore++;
-        console.log("Player wins! Paper beats Rock.");
+        return "Player wins! Paper beats Rock.";
       } else if (playerChoice === "scissors") {
         computerScore++;
-        console.log("Computer wins! Rock beats Scissors.");
+        return "Computer wins! Rock beats Scissors.";
       } else {
-        console.log("Draw!");
+        return "Draw!";
       }
-      //! Case compChoice == "PAPER"
-    } else if (computerChoice === "paper") {
+
+    case "paper":
       if (playerChoice === "scissors") {
         playerScore++;
-        console.log("Player wins! Scissors beats Paper.");
+        return "Player wins! Scissors beats Paper.";
       } else if (playerChoice === "rock") {
         computerScore++;
-        console.log("Computer wins! Paper beats Rock.");
+        return "Computer wins! Paper beats Rock.";
       } else {
-        console.log("Draw!");
+        return "Draw!";
       }
-      //! Case compChoice == "SCISSORS"
-    } else if (computerChoice === "scissors") {
+
+    case "scissors":
       if (playerChoice === "rock") {
         playerScore++;
-        console.log("Player wins! Rock beats Scissors.");
+        return "Player wins! Rock beats Scissors.";
       } else if (playerChoice === "paper") {
         computerScore++;
-        console.log("Computer wins! Scissors beats Paper.");
+        return "Computer wins! Scissors beats Paper.";
       } else {
-        console.log("Draw!");
+        return "Draw!";
       }
-    }
-  }
 
-  for (let i = 0; i < 5; i++) {
-    const computerChoice = computerSelection();
-    const playerChoice = playerSelection();
-
-    playRound(playerChoice, computerChoice);
-  }
-
-  console.log(`Player: ${playerScore}\nComputer: ${computerScore}\n`);
-  if (playerScore > computerScore) {
-    console.log("The player is the winner!");
-  } else if (playerScore < computerScore) {
-    console.log("The computer is the winner!");
-  } else {
-    console.log("Draw! Nobody wins!");
+    default:
+      break;
   }
 }
-
-game();
