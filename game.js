@@ -51,12 +51,12 @@ function game(event) {
     const winnerDeclaration = document.createElement("h3");
     winnerDeclaration.textContent = "The player is the winner!";
 
-    document.body.insertBefore(winnerDeclaration, newGameButton);
+    document.body.insertBefore(winnerDeclaration, scoreboard);
   } else if (computerScore === 5) {
     const winnerDeclaration = document.createElement("h3");
     winnerDeclaration.textContent = "The computer is the winner!";
 
-    document.body.insertBefore(winnerDeclaration, newGameButton);
+    document.body.insertBefore(winnerDeclaration, scoreboard);
   }
 }
 
