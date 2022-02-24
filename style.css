@@ -62,6 +62,12 @@ button img {
   margin: 0;
 }
 
+p {
+  color: var(--accent-color);
+  font-size: 14px;
+  text-align: center;
+}
+
 .results {
   flex: 1;
   align-self: stretch;
@@ -81,6 +87,5 @@ h3 {
 }
 
 .results div p {
-  color: var(--accent-color);
-  font-size: 14px;
+  text-align: initial;
 }
