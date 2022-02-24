@@ -4,10 +4,42 @@
   <head>
     <meta charset="UTF-8" />
     <title>Rock, Paper and Scissors</title>
-    <script src="game.js" defer></script>
+    <link rel="stylesheet" href="style.css" />
+    <!-- <script src="game.js" defer></script> -->
   </head>
 
   <body>
-    <p>Refresh the page to work properly and open DevTools to see how the game is going!</p>
+    <div class="main">
+      <h1>Rock, Paper and Scissors</h1>
+
+      <div class="player-buttons">
+        <button id="rock">
+          <img src="img/rock.svg" alt="a closed hand meaning the rock" width="96" height="auto" />
+          Rock
+        </button>
+
+        <button id="paper">
+          <img src="img/paper.svg" alt="a open hand meaning the paper" width="96" height="auto" />
+          Paper
+        </button>
+
+        <button id="scissors">
+          <img
+            src="img/scissor.svg"
+            alt="a hand doing the peace sign meaning the scissors"
+            width="96"
+            height="auto"
+          />
+          Scissors
+        </button>
+      </div>
+
+      <button id="new-game">New game</button>
+
+      <div class="results">
+        <h3>Results</h3>
+        <div></div>
+      </div>
+    </div>
   </body>
 </html>
